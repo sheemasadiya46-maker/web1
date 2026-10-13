@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Little World Just for Ammu Ji 💗</title>
+<style>
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:#fff0f5;
+  color:#5a3050;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:#fce4ec;}
+::-webkit-scrollbar-thumb{background:linear-gradient(#f48fb1,#ce93d8);border-radius:10px;}
+
+/* ===== FLOATING DECORATIONS ===== */
+.floater{
+  position:fixed;pointer-events:none;z-index:0;
+  animation:floatUp linear infinite;
+  opacity:0;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:0.6;}
+  100%{transform:translateY(-110vh) rotate(360deg);opacity:0;}
+}
+.star-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+
+/* ===== SECTION BASE ===== */
+section{position:relative;z-index:1;padding:60px 20px;}
+
+/* ===================================
+   WELCOME SCREEN
+=================================== */
+#welcome{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 40%,#e8eaf6 100%);
+  position:relative;overflow:hidden;
+  text-align:center;padding:40px 20px;
+}
+#welcome::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 20%,rgba(255,182,193,0.45),transparent 55%),
+             radial-gradient(circle at 70% 80%,rgba(206,147,216,0.4),transparent 55%);
+  z-index:0;
+}
+
+/* Teddy SVG wrapper */
+.teddy-hero{
+  position:relative;z-index:2;
+  animation:teddyFloat 3s ease-in-out infinite;
+  margin-bottom:10px;
+}
+@keyframes teddyFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-18px);}
+}
+
+/* Gift box */
+.giftbox-wrap{
+  position:relative;z-index:2;
+  width:140px;height:140px;
+  margin:0 auto 20px;
+  cursor:pointer;
+}
+.giftbox-body{
+  width:120px;height:90px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  border-radius:14px;
+  position:absolute;bottom:0;left:10px;
+  box-shadow:0 8px 30px rgba(244,143,177,0.5);
+  transition:transform 0.3s;
+}
+.giftbox-lid{
+  width:130px;height:38px;
+  background:linear-gradient(135deg,#f06292,#ba68c8);
+  border-radius:12px 12px 4px 4px;
+  position:absolute;top:0;left:5px;
+  box-shadow:0 4px 15px rgba(186,104,200,0.5);
+  transform-origin:bottom center;
+  transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.giftbox-ribbon-v{
+  width:18px;height:100%;
+  background:linear-gradient(#fff,#fce4ec);
+  border-radius:4px;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.giftbox-ribbon-h{
+  width:100%;height:18px;
+  background:linear-gradient(90deg,#fff,#fce4ec);
+  border-radius:4px;
+  position:absolute;top:50%;transform:translateY(-50%);
+}
+.ribbon-bow{
+  position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  width:50px;height:30px;
+  animation:bowWiggle 2s ease-in-out infinite;
+}
+@keyframes bowWiggle{
+  0%,100%{transform:translateX(-50%) rotate(-5deg);}
+  50%{transform:translateX(-50%) rotate(5deg);}
+}
+.giftbox-wrap.opened .giftbox-lid{
+  transform:translateY(-60px) rotate(-30deg);
+}
+
+/* Typewriter messages */
+.welcome-msgs{
+  position:relative;z-index:2;
+  min-height:100px;margin:10px 0 6px;
+}
+.welcome-msg{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.3rem,4vw,2.2rem);
+  color:#8b3a62;
+  line-height:1.4;
+  opacity:0;
+  transition:opacity 0.8s;
+  display:block;
+  text-shadow:0 2px 12px rgba(244,143,177,0.35);
+}
+.welcome-msg.visible{opacity:1;}
+
+/* Glowing button */
+.glow-btn{
+  display:inline-block;
+  padding:16px 40px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  color:#fff;font-family:'Nunito',sans-serif;
+  font-size:1.15rem;font-weight:800;
+  border:none;border-radius:50px;
+  cursor:pointer;
+  position:relative;z-index:2;
+  box-shadow:0 0 28px rgba(244,143,177,0.7),0 4px 20px rgba(206,147,216,0.5);
+  transition:transform 0.2s,box-shadow 0.2s;
+  letter-spacing:0.5px;
+  margin-top:18px;
+  animation:pulse 2s ease-in-out infinite;
+}
+.glow-btn:hover{transform:scale(1.07);box-shadow:0 0 45px rgba(244,143,177,0.9),0 6px 28px rgba(206,147,216,0.7);}
+.glow-btn:active{transform:scale(0.96);}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 28px rgba(244,143,177,0.7),0 4px 20px rgba(206,147,216,0.5);}
+  50%{box-shadow:0 0 55px rgba(244,143,177,1),0 8px 35px rgba(206,147,216,0.8);}
+}
+.hint-text{
+  position:relative;z-index:2;
+  font-size:0.85rem;color:#b07090;
+  margin-top:14px;
+  font-style:italic;
+  animation:fadeInUp 1s 3.5s both;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* Burst hearts on open */
+.burst-heart{
+  position:fixed;pointer-events:none;z-index:9999;
+  font-size:1.5rem;
+  animation:burstAnim 1.2s ease-out forwards;
+}
+@keyframes burstAnim{
+  0%{opacity:1;transform:scale(0.5) translate(0,0);}
+  100%{opacity:0;transform:scale(1.5) translate(var(--tx),var(--ty));}
+}
+
+/* ===================================
+   MAIN SITE (hidden until opened)
+=================================== */
+#main-site{
+  display:none;
+  animation:siteReveal 1s ease both;
+}
+@keyframes siteReveal{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===================================
+   NAV
+=================================== */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(252,228,236,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:2px solid rgba(244,143,177,0.3);
+  padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.nav-logo{
+  font-family:'Dancing Script',cursive;
+  font-size:1.4rem;color:#c2185b;
+  text-shadow:0 2px 8px rgba(244,143,177,0.4);
+}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap;}
+.nav-links a{
+  text-decoration:none;
+  font-size:0.82rem;font-weight:700;
+  color:#8b3a62;
+  padding:6px 14px;
+  border-radius:20px;
+  border:1.5px solid rgba(244,143,177,0.5);
+  background:rgba(255,255,255,0.5);
+  transition:all 0.2s;
+}
+.nav-links a:hover{background:linear-gradient(135deg,#f48fb1,#ce93d8);color:#fff;border-color:transparent;}
+
+/* ===================================
+   SECTION HEADERS
+=================================== */
+.section-title{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2rem,5vw,3.2rem);
+  text-align:center;
+  background:linear-gradient(135deg,#e91e8c,#9c27b0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:10px;
+  text-shadow:none;
+}
+.section-sub{
+  text-align:center;font-size:0.95rem;
+  color:#b07090;margin-bottom:40px;font-weight:600;
+}
+
+/* ===================================
+   LETTER SECTION
+=================================== */
+#letter{
+  background:linear-gradient(160deg,#fce4ec,#f3e5f5,#ede7f6);
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.envelope-wrap{
+  position:relative;width:300px;margin:0 auto 40px;
+  cursor:pointer;user-select:none;
+}
+.envelope{
+  width:300px;height:200px;
+  background:linear-gradient(135deg,#f8bbd0,#e1bee7);
+  border-radius:16px;
+  position:relative;
+  box-shadow:0 12px 40px rgba(244,143,177,0.4);
+  overflow:visible;
+  transition:transform 0.3s;
+}
+.envelope:hover{transform:scale(1.04);}
+.env-bottom{
+  width:0;height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-bottom:120px solid #f48fb1;
+  position:absolute;bottom:0;left:0;
+}
+.env-top{
+  width:0;height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-top:120px solid #f06292;
+  position:absolute;top:0;left:0;
+  transform-origin:top center;
+  transition:transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
+  z-index:2;
+}
+.envelope.opened .env-top{transform:rotateX(180deg);}
+.env-seal{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;
+  background:linear-gradient(135deg,#e91e8c,#9c27b0);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 4px 16px rgba(233,30,140,0.5);
+  z-index:3;
+  transition:transform 0.3s;
+}
+.envelope.opened .env-seal{transform:translate(-50%,-50%) scale(0);}
+.env-label{
+  text-align:center;margin-top:14px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.3rem;color:#8b3a62;
+}
+
+/* Letter modal */
+.letter-modal{
+  display:none;
+  position:fixed;inset:0;z-index:500;
+  background:rgba(90,30,70,0.6);
+  backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.letter-modal.active{display:flex;}
+.letter-card{
+  background:linear-gradient(145deg,#fffde7,#fff9c4,#fff0f5);
+  border-radius:24px;
+  border:3px solid #f8bbd0;
+  padding:40px 36px;
+  max-width:560px;width:100%;
+  position:relative;
+  box-shadow:0 20px 60px rgba(233,30,140,0.2);
+  max-height:90vh;overflow-y:auto;
+}
+.letter-card::before{
+  content:'';position:absolute;inset:-3px;
+  border-radius:26px;z-index:-1;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8,#9575cd);
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  padding:3px;
+}
+.letter-close{
+  position:absolute;top:14px;right:18px;
+  font-size:1.4rem;cursor:pointer;color:#c2185b;
+  background:none;border:none;
+  transition:transform 0.2s;
+}
+.letter-close:hover{transform:scale(1.3);}
+.letter-text{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.05rem,3vw,1.25rem);
+  color:#5a3050;line-height:1.9;
+  white-space:pre-wrap;min-height:120px;
+}
+.letter-cursor{
+  display:inline-block;width:2px;height:1.1em;
+  background:#c2185b;margin-left:2px;
+  animation:blink 0.7s step-start infinite;
+  vertical-align:middle;
+}
+@keyframes blink{50%{opacity:0;}}
+.replay-btn{
+  margin-top:20px;
+  padding:10px 26px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  border:none;border-radius:30px;color:#fff;
+  font-family:'Nunito',sans-serif;font-weight:700;
+  cursor:pointer;font-size:0.9rem;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 18px rgba(244,143,177,0.5);
+}
+.replay-btn:hover{transform:scale(1.06);}
+.letter-teddy{
+  position:absolute;bottom:-10px;right:-10px;
+  font-size:3rem;
+  animation:teddyBob 2s ease-in-out infinite;
+}
+@keyframes teddyBob{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+
+/* ===================================
+   GIFT GALLERY
+=================================== */
+#gifts{
+  background:linear-gradient(160deg,#f3e5f5,#e8eaf6,#fce4ec);
+  padding:80px 20px;
+}
+.gifts-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+  max-width:1000px;margin:0 auto;
+}
+.gift-card{
+  background:rgba(255,255,255,0.7);
+  border-radius:28px;
+  border:2px solid rgba(244,143,177,0.35);
+  padding:32px 24px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(206,147,216,0.2);
+  transition:transform 0.3s,box-shadow 0.3s;
+  backdrop-filter:blur(10px);
+}
+.gift-card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 50px rgba(206,147,216,0.4);
+}
+.gift-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(244,143,177,0.1),rgba(206,147,216,0.1));
+  z-index:0;
+}
+.gift-icon{
+  font-size:3.5rem;
+  display:block;margin-bottom:14px;
+  position:relative;z-index:1;
+  animation:giftIconBounce 3s ease-in-out infinite;
+}
+@keyframes giftIconBounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+.gift-card h3{
+  font-family:'Dancing Script',cursive;
+  font-size:1.5rem;color:#8b3a62;
+  position:relative;z-index:1;margin-bottom:8px;
+}
+.gift-card p{
+  font-size:0.88rem;color:#b07090;
+  position:relative;z-index:1;
+}
+.open-badge{
+  position:absolute;top:14px;right:14px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  color:#fff;font-size:0.72rem;font-weight:800;
+  padding:4px 10px;border-radius:20px;
+  letter-spacing:0.5px;
+  z-index:2;
+}
+
+/* Gift modals */
+.gift-modal{
+  display:none;position:fixed;inset:0;z-index:600;
+  background:rgba(90,30,70,0.65);
+  backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.gift-modal.active{display:flex;}
+.gift-modal-inner{
+  background:linear-gradient(145deg,#fff0f5,#f3e5f5,#ede7f6);
+  border-radius:28px;padding:40px 32px;
+  max-width:520px;width:100%;
+  position:relative;
+  box-shadow:0 24px 70px rgba(233,30,140,0.25);
+  text-align:center;
+  max-height:90vh;overflow-y:auto;
+  animation:modalPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modalPop{from{opacity:0;transform:scale(0.7);}to{opacity:1;transform:scale(1);}}
+.gift-modal-close{
+  position:absolute;top:14px;right:18px;
+  font-size:1.4rem;cursor:pointer;color:#c2185b;
+  background:none;border:none;
+  transition:transform 0.2s;
+}
+.gift-modal-close:hover{transform:scale(1.3) rotate(90deg);}
+.gift-modal h2{
+  font-family:'Dancing Script',cursive;
+  font-size:2rem;color:#8b3a62;
+  margin-bottom:16px;
+}
+.gift-modal p{
+  color:#5a3050;line-height:1.8;
+  font-size:0.95rem;
+}
+
+/* Teddy hug animation */
+.teddy-hug-svg{
+  display:block;margin:0 auto 16px;
+  transition:transform 0.3s;
+}
+.teddy-hug-svg.hugging{animation:hugAnim 0.5s ease-in-out 3 both;}
+@keyframes hugAnim{0%,100%{transform:scale(1);}50%{transform:scale(1.18);}
+}
+
+/* Reasons cards */
+.reasons-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.reason-card{
+  background:linear-gradient(135deg,rgba(244,143,177,0.2),rgba(206,147,216,0.2));
+  border-radius:16px;padding:14px 12px;
+  font-size:0.88rem;color:#5a3050;font-weight:600;
+  opacity:0;transform:scale(0.7);
+  transition:opacity 0.4s,transform 0.4s;
+  border:1.5px solid rgba(244,143,177,0.3);
+}
+.reason-card.popped{opacity:1;transform:scale(1);}
+
+/* Hug options */
+.hug-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.hug-btn{
+  padding:12px 20px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  border:none;border-radius:30px;color:#fff;
+  font-family:'Nunito',sans-serif;font-weight:700;
+  cursor:pointer;font-size:0.9rem;
+  box-shadow:0 4px 16px rgba(244,143,177,0.45);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.hug-btn:hover{transform:scale(1.08);}
+.hug-result{
+  font-family:'Dancing Script',cursive;
+  font-size:1.3rem;color:#8b3a62;
+  min-height:50px;margin-top:10px;
+  opacity:0;transition:opacity 0.5s;
+}
+.hug-result.show{opacity:1;}
+
+/* Cuddle box items */
+.cuddle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+.cuddle-item{
+  background:rgba(255,255,255,0.7);
+  border-radius:18px;padding:16px 8px;
+  cursor:pointer;
+  border:2px solid rgba(244,143,177,0.3);
+  font-size:2.4rem;text-align:center;
+  transition:transform 0.25s,box-shadow 0.25s;
+  box-shadow:0 4px 16px rgba(244,143,177,0.15);
+}
+.cuddle-item:hover{transform:scale(1.12);box-shadow:0 8px 28px rgba(244,143,177,0.4);}
+.cuddle-item.wiggle{animation:wigglePop 0.5s ease both;}
+@keyframes wigglePop{
+  0%{transform:scale(1);}
+  25%{transform:scale(1.25) rotate(-10deg);}
+  50%{transform:scale(1.1) rotate(10deg);}
+  75%{transform:scale(1.2) rotate(-5deg);}
+  100%{transform:scale(1);}
+}
+.cuddle-msg{
+  font-size:0.78rem;color:#8b3a62;font-weight:700;
+  margin-top:6px;line-height:1.3;
+}
+
+/* ===================================
+   SURPRISE SECTION
+=================================== */
+#surprise{
+  min-height:100vh;
+  background:linear-gradient(135deg,#fce4ec,#e8eaf6,#f3e5f5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 20px;
+  position:relative;overflow:hidden;
+}
+.confetti-piece{
+  position:absolute;pointer-events:none;
+  border-radius:2px;
+  animation:confettiFall linear infinite;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+}
+.surprise-box{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(14px);
+  border:3px solid rgba(244,143,177,0.5);
+  border-radius:32px;
+  padding:50px 36px;
+  max-width:600px;width:100%;
+  position:relative;z-index:2;
+  box-shadow:0 20px 60px rgba(233,30,140,0.2);
+  animation:surprisePop 1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes surprisePop{from{opacity:0;transform:scale(0.5);}to{opacity:1;transform:scale(1);}}
+.surprise-box h2{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2rem,6vw,3.2rem);
+  background:linear-gradient(135deg,#e91e8c,#9c27b0,#3f51b5);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:20px;line-height:1.3;
+}
+.surprise-box p{
+  font-size:1rem;color:#5a3050;line-height:1.9;margin-bottom:12px;
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+footer{
+  background:linear-gradient(135deg,#fce4ec,#f3e5f5);
+  text-align:center;padding:30px 20px;
+  border-top:2px solid rgba(244,143,177,0.3);
+  font-size:0.9rem;color:#b07090;
+  font-family:'Dancing Script',cursive;
+  font-size:1.1rem;
+}
+
+/* ===================================
+   SECRET MESSAGE HANDWRITE
+=================================== */
+.handwrite-text{
+  font-family:'Dancing Script',cursive;
+  font-size:1.15rem;color:#5a3050;
+  line-height:1.9;min-height:80px;
+  white-space:pre-wrap;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+@media(max-width:600px){
+  .reasons-grid{grid-template-columns:1fr;}
+  .cuddle-grid{grid-template-columns:repeat(2,1fr);}
+  .gifts-grid{grid-template-columns:1fr;}
+  .letter-card{padding:28px 18px;}
+  .gift-modal-inner{padding:28px 18px;}
+}
+
+/* ===================================
+   LITTLE FLOATING HEARTS (global)
+=================================== */
+.mini-heart{
+  position:fixed;pointer-events:none;z-index:9998;
+  font-size:1rem;
+  animation:heartRise 2.5s ease-out forwards;
+}
+@keyframes heartRise{
+  0%{opacity:1;transform:translateY(0) scale(0.8);}
+  100%{opacity:0;transform:translateY(-180px) scale(1.4);}
+}
+
+/* ===================================
+   WIGGLE BUTTON
+=================================== */
+.wiggle-btn{
+  padding:12px 28px;
+  background:linear-gradient(135deg,#f48fb1,#ce93d8);
+  border:none;border-radius:30px;color:#fff;
+  font-family:'Nunito',sans-serif;font-weight:700;
+  cursor:pointer;font-size:0.95rem;
+  box-shadow:0 4px 18px rgba(244,143,177,0.5);
+  transition:transform 0.2s;
+  margin-top:14px;
+}
+.wiggle-btn:hover{transform:scale(1.07);}
+
+/* ===================================
+   SVG ILLUSTRATIONS
+=================================== */
+.inline-svg{display:block;margin:0 auto;}
+
+/* glass card effect */
+.glass{
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(16px);
+  border:1.5px solid rgba(255,255,255,0.7);
+  border-radius:24px;
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== FLOATING BACKGROUND STARS ===================== -->
+<div class="star-bg" id="starBg"></div>
+
+<!-- ===================== WELCOME SCREEN ===================== -->
+<section id="welcome">
+
+  <!-- Animated Teddy Bear (SVG) -->
+  <div class="teddy-hero" style="margin-bottom:4px;">
+    <svg width="160" height="160" viewBox="0 0 160 160" class="inline-svg" xmlns="http://www.w3.org/2000/svg">
+      <!-- ears -->
+      <circle cx="42" cy="44" r="22" fill="#f8bbd0"/>
+      <circle cx="118" cy="44" r="22" fill="#f8bbd0"/>
+      <circle cx="42" cy="44" r="13" fill="#f48fb1"/>
+      <circle cx="118" cy="44" r="13" fill="#f48fb1"/>
+      <!-- body -->
+      <ellipse cx="80" cy="112" rx="44" ry="38" fill="#f8bbd0"/>
+      <!-- belly -->
+      <ellipse cx="80" cy="118" rx="26" ry="20" fill="#fce4ec"/>
+      <!-- head -->
+      <circle cx="80" cy="68" r="40" fill="#f8bbd0"/>
+      <!-- face -->
+      <ellipse cx="80" cy="78" rx="22" ry="14" fill="#fce4ec"/>
+      <!-- eyes -->
+      <circle cx="68" cy="60" r="6" fill="#5a3050"/>
+      <circle cx="92" cy="60" r="6" fill="#5a3050"/>
+      <circle cx="70" cy="58" r="2.5" fill="#fff"/>
+      <circle cx="94" cy="58" r="2.5" fill="#fff"/>
+      <!-- nose -->
+      <ellipse cx="80" cy="70" rx="5" ry="3.5" fill="#c2185b"/>
+      <!-- smile -->
+      <path d="M72 76 Q80 84 88 76" stroke="#c2185b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- blush -->
+      <ellipse cx="58" cy="72" rx="8" ry="5" fill="rgba(244,143,177,0.6)"/>
+      <ellipse cx="102" cy="72" rx="8" ry="5" fill="rgba(244,143,177,0.6)"/>
+      <!-- arms -->
+      <ellipse cx="36" cy="110" rx="13" ry="22" fill="#f8bbd0" transform="rotate(20,36,110)"/>
+      <ellipse cx="124" cy="110" rx="13" ry="22" fill="#f8bbd0" transform="rotate(-20,124,110)"/>
+      <!-- heart held by teddy -->
+      <g id="teddyHeart" transform="translate(62,130)">
+        <path d="M18 8 C18 3,13 0,9 3 C5 0,0 3,0 8 C0 12,9 20,9 20 C9 20,18 12,18 8 Z" fill="#e91e8c"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Gift Box -->
+  <div class="giftbox-wrap" id="giftBoxHero">
+    <div class="giftbox-body">
+      <div class="giftbox-ribbon-v"></div>
+      <div class="giftbox-ribbon-h"></div>
+    </div>
+    <div class="giftbox-lid" id="giftLid">
+      <div class="giftbox-ribbon-v"></div>
+      <div class="giftbox-ribbon-h"></div>
+    </div>
+    <div class="ribbon-bow">
+      <svg viewBox="0 0 50 30" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25 15 C10 0,0 8,5 15 C10 22,20 18,25 15 Z" fill="#e91e8c"/>
+        <path d="M25 15 C40 0,50 8,45 15 C40 22,30 18,25 15 Z" fill="#c2185b"/>
+        <circle cx="25" cy="15" r="4" fill="#e91e8c"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Typewriter messages -->
+  <div class="welcome-msgs" id="welcomeMsgs">
+    <span class="welcome-msg" id="wm0">Oyeeeee my cutooooo! 🧸💋💗</span>
+    <span class="welcome-msg" id="wm1">Soooo, someone made a tiny little world JUST FOR YOUUUU!</span>
+    <span class="welcome-msg" id="wm2">And guess whattttt?</span>
+    <span class="welcome-msg" id="wm3">THIS WHOLE LITTLE WORLD IS YOURS, AMMU JI! 🎀🥹</span>
+  </div>
+
+  <!-- CTA button -->
+  <button class="glow-btn" id="openWorldBtn" onclick="openWorld()">Open Your Little World 💗</button>
+  <p class="hint-text">Pssst… keep clicking things. There are surprises waiting for you! 🎁</p>
+</section>
+
+<!-- ===================== MAIN SITE ===================== -->
+<div id="main-site">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🎀 Ammu Ji's Little World 💗</div>
+    <div class="nav-links">
+      <a href="#letter">💌 Letter</a>
+      <a href="#gifts">🎁 Gifts</a>
+      <a href="#surprise">🥹 Surprise</a>
+    </div>
+  </nav>
+
+  <!-- ===================== LETTER SECTION ===================== -->
+  <section id="letter">
+    <h2 class="section-title">A Little Letter for My Ammu Ji 💗</h2>
+    <p class="section-sub">Click the envelope to open your surprise letter ✨</p>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope" onclick="openEnvelope()">
+        <div class="env-bottom"></div>
+        <div class="env-top" id="envTop"></div>
+        <div class="env-seal">💗</div>
+      </div>
+      <p class="env-label">For: Ammu Ji 🧸 &nbsp;|&nbsp; From: Your Best Bestu 💗</p>
+    </div>
+
+    <!-- Floating letter teddy -->
+    <div style="text-align:center;font-size:2.5rem;animation:teddyFloat 3s ease-in-out infinite;margin-top:8px;">🧸</div>
+  </section>
+
+  <!-- Letter Modal -->
+  <div class="letter-modal" id="letterModal">
+    <div class="letter-card">
+      <button class="letter-close" onclick="closeLetterModal()">✕</button>
+      <div style="text-align:center;font-family:'Dancing Script',cursive;font-size:1.5rem;color:#c2185b;margin-bottom:18px;">💌 Your Letter, Ammu Ji 💌</div>
+      <div class="letter-text" id="letterText"><span class="letter-cursor" id="letterCursor"></span></div>
+      <div style="text-align:center;margin-top:20px;">
+        <button class="replay-btn" onclick="replayLetter()">↺ Replay Letter</button>
+      </div>
+      <div class="letter-teddy">🧸</div>
+    </div>
+  </div>
+
+  <!-- ===================== GIFT GALLERY ===================== -->
+  <section id="gifts">
+    <h2 class="section-title">Little Gifts, Just for Youuu! 🎁💗</h2>
+    <p class="section-sub">Click each gift box to unwrap your surprise 🎀</p>
+
+    <div class="gifts-grid">
+
+      <!-- Gift 1: Teddy -->
+      <div class="gift-card" onclick="openGift(1)">
+        <span class="open-badge">TAP ME!</span>
+        <span class="gift-icon">🧸</span>
+        <h3>My Teddy for You</h3>
+        <p>A virtual plush bestie made with all the love! 💗</p>
+      </div>
+
+      <!-- Gift 2: Secret Message -->
+      <div class="gift-card" onclick="openGift(2)">
+        <span class="open-badge">TAP ME!</span>
+        <span class="gift-icon">💌</span>
+        <h3>A Secret Message</h3>
+        <p>Shhh… this one is extra special for you 🥹</p>
+      </div>
+
+      <!-- Gift 3: Pocket Full of Hugs -->
+      <div class="gift-card" onclick="openGift(3)">
+        <span class="open-badge">TAP ME!</span>
+        <span class="gift-icon">🤗</span>
+        <h3>A Pocket Full of Hugs</h3>
+        <p>Pick your hug type and feel the love! 🫂</p>
+      </div>
+
+      <!-- Gift 4: Why You're My Favourite -->
+      <div class="gift-card" onclick="openGift(4)">
+        <span class="open-badge">TAP ME!</span>
+        <span class="gift-icon">💗</span>
+        <h3>Why You're My Favourite</h3>
+        <p>Six beautiful reasons, all for you 🌸</p>
+      </div>
+
+      <!-- Gift 5: Cuddle Box -->
+      <div class="gift-card" onclick="openGift(5)">
+        <span class="open-badge">TAP ME!</span>
+        <span class="gift-icon">🎀</span>
+        <h3>The Cuddle Box</h3>
+        <p>Tap every plushie for a sweet surprise! 🌷</p>
+      </div>
+
+      <!-- Gift 6: Biggest Surprise -->
+      <div class="gift-card" onclick="openGift(6)" style="background:linear-gradient(135deg,rgba(244,143,177,0.3),rgba(206,147,216,0.3));">
+        <span class="open-badge" style="background:linear-gradient(135deg,#c2185b,#7b1fa2);">BIG ONE!</span>
+        <span class="gift-icon">🥹</span>
+        <h3>The Biggest Surprise</h3>
+        <p>Are you ready? 👀✨ This one is HUGE!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== GIFT MODALS ===== -->
+
+  <!-- Modal 1: Teddy -->
+  <div class="gift-modal" id="modal1">
+    <div class="gift-modal-inner">
+      <button class="gift-modal-close" onclick="closeGift(1)">✕</button>
+      <h2>Your Virtual Teddy 🧸💗</h2>
+      <svg id="huggySvg" class="teddy-hug-svg" width="130" height="130" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="42" cy="44" r="22" fill="#f8bbd0"/><circle cx="118" cy="44" r="22" fill="#f8bbd0"/>
+        <circle cx="42" cy="44" r="13" fill="#f48fb1"/><circle cx="118" cy="44" r="13" fill="#f48fb1"/>
+        <ellipse cx="80" cy="112" rx="44" ry="38" fill="#f8bbd0"/>
+        <ellipse cx="80" cy="118" rx="26" ry="20" fill="#fce4ec"/>
+        <circle cx="80" cy="68" r="40" fill="#f8bbd0"/>
+        <ellipse cx="80" cy="78" rx="22" ry="14" fill="#fce4ec"/>
+        <circle cx="68" cy="60" r="6" fill="#5a3050"/><circle cx="92" cy="60" r="6" fill="#5a3050"/>
+        <circle cx="70" cy="58" r="2.5" fill="#fff"/><circle cx="94" cy="58" r="2.5" fill="#fff"/>
+        <ellipse cx="80" cy="70" rx="5" ry="3.5" fill="#c2185b"/>
+        <path d="M72 76 Q80 84 88 76" stroke="#c2185b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="58" cy="72" rx="8" ry="5" fill="rgba(244,143,177,0.6)"/>
+        <ellipse cx="102" cy="72" rx="8" ry="5" fill="rgba(244,143,177,0.6)"/>
+        <ellipse id="armL" cx="36" cy="110" rx="13" ry="22" fill="#f8bbd0" transform="rotate(20,36,110)"/>
+        <ellipse id="armR" cx="124" cy="110" rx="13" ry="22" fill="#f8bbd0" transform="rotate(-20,124,110)"/>
+        <path d="M18 8 C18 3,13 0,9 3 C5 0,0 3,0 8 C0 12,9 20,9 20 C9 20,18 12,18 8 Z" fill="#e91e8c" transform="translate(62,130)"/>
+      </svg>
+      <p style="margin:12px 0;">If I could gift you a teddy, I'd make sure it gave you the biggest cuddles whenever I'm not around! Here's your virtual teddy, Ammu Ji! 🧸💗</p>
+      <button class="wiggle-btn" onclick="hugTeddy()">Hug My Teddy 🤗</button>
+      <p id="hugMsg" style="font-family:'Dancing Script',cursive;font-size:1.2rem;color:#c2185b;margin-top:12px;opacity:0;transition:opacity 0.5s;"></p>
+    </div>
+  </div>
+
+  <!-- Modal 2: Secret Message -->
+  <div class="gift-modal" id="modal2">
+    <div class="gift-modal-inner">
+      <button class="gift-modal-close" onclick="closeGift(2)">✕</button>
+      <h2>A Secret Message 💌🥹</h2>
+      <div class="handwrite-text" id="secretMsgText" style="min-height:120px;text-align:left;background:rgba(255,255,255,0.5);border-radius:16px;padding:20px;border:2px dashed rgba(244,143,177,0.5);"><span class="letter-cursor"></span></div>
+      <button class="wiggle-btn" style="margin-top:16px;" onclick="replaySecret()">↺ Replay</button>
+    </div>
+  </div>
+
+  <!-- Modal 3: Hugs -->
+  <div class="gift-modal" id="modal3">
+    <div class="gift-modal-inner">
+      <button class="gift-modal-close" onclick="closeGift(3)">✕</button>
+      <h2>A Pocket Full of Hugs 🤗🫂</h2>
+      <p>Pick your favourite hug type, Ammu Ji!</p>
+      <div class="hug-options">
+        <button class="hug-btn" onclick="doHug('bear')">The Bear Hug 🧸</button>
+        <button class="hug-btn" onclick="doHug('squishy')">The Squishy Cuddle 💗</button>
+        <button class="hug-btn" onclick="doHug('endless')">The Never-Ending Hug 🫂</button>
+      </div>
+      <div style="font-size:4rem;text-align:center;min-height:80px;" id="hugAnimIcon"></div>
+      <div class="hug-result" id="hugResult"></div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Reasons -->
+  <div class="gift-modal" id="modal4">
+    <div class="gift-modal-inner">
+      <button class="gift-modal-close" onclick="closeGift(4)">✕</button>
+      <h2>Why You're My Favourite 💗</h2>
+      <div class="reasons-grid" id="reasonsGrid">
+        <div class="reason-card">🌸 You make me smile even on ordinary days.</div>
+        <div class="reason-card">😂 You are my favourite person to annoy.</div>
+        <div class="reason-card">✨ You make our friendship special in your own way.</div>
+        <div class="reason-card">🧸 You're my cutest pagal.</div>
+        <div class="reason-card">💫 You deserve endless happiness and hugs.</div>
+        <div class="reason-card">🎀 You're my forever favourite bestu.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Cuddle Box -->
+  <div class="gift-modal" id="modal5">
+    <div class="gift-modal-inner">
+      <button class="gift-modal-close" onclick="closeGift(5)">✕</button>
+      <h2>The Cuddle Box 🧸🎀</h2>
+      <p style="margin-bottom:6px;">Tap each plushie for a sweet message!</p>
+      <div class="cuddle-grid" id="cuddleGrid">
+        <div class="cuddle-item" onclick="cuddleTap(this,'This teddy belongs to Ammu Ji! 🧸')">🧸<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'Sending you 1000 virtual cuddles! 💗')">🐰<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'One extra-soft hug for my favourite human! 🫂')">🐱<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'Boop! You\'re too cute, pagal! 💕')">💝<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'A pink bow just for my Ammu Ji! 🎀')">🎀<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'A little charm to keep forever! 🌸')">🌸<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'Sweet dreams with this heart cushion! 💟')">💟<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'Sleepy kitty says hi! 😸💗')">😸<div class="cuddle-msg"></div></div>
+        <div class="cuddle-item" onclick="cuddleTap(this,'You are my sunshine, Ammu Ji! ☀️💗')">☀️<div class="cuddle-msg"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Biggest Surprise (full screen party) -->
+  <div class="gift-modal" id="modal6" style="align-items:center;justify-content:center;">
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden;" id="confettiContainer"></div>
+    <div class="surprise-box" style="position:relative;z-index:2;">
+      <div style="font-size:3rem;text-align:center;margin-bottom:10px;">🎊🧸🎊</div>
+      <h2>SURPRIIIIISE, AMMU JIIII! 🎁💗</h2>
+      <p>You thought that was all? Hehehe, NOPE!</p>
+      <p>You're officially the owner of this tiny magical world, unlimited virtual hugs, endless teddy cuddles, and a lifetime supply of being called <strong>CUTOOOO!</strong> 🧸🎀</p>
+      <p style="font-family:'Dancing Script',cursive;font-size:1.2rem;color:#8b3a62;">No returns, no exchanges. Friendship accepted forever. 💗</p>
+      <div style="font-size:2rem;margin:14px 0;letter-spacing:4px;">🧸💗🎀✨🌸💫🥹</div>
+      <button class="wiggle-btn" onclick="closeGift(6)">Awww, Thank You! 🥹💗</button>
+    </div>
+  </div>
+
+  <!-- ===================== SURPRISE SECTION ===================== -->
+  <section id="surprise">
+    <div id="confettiSection" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"></div>
+    <div class="surprise-box" style="position:relative;z-index:2;">
+      <div style="font-size:3.5rem;margin-bottom:10px;">🧸💗🎀✨</div>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,5vw,2.8rem);">This Whole World is Yours, Ammu Ji! 🥹</h2>
+      <p style="color:#5a3050;line-height:1.9;font-size:0.95rem;margin-top:16px;">Every corner of this tiny world was made with love, just for you. You deserve all the smiles, all the cuddles, all the teddy bears, and all the happiness in the universe.</p>
+      <p style="color:#8b3a62;font-family:'Dancing Script',cursive;font-size:1.3rem;margin-top:14px;">You are my favourite pagal, my cutoo, my pookie, and my forever best friend. 💗</p>
+      <div style="margin-top:24px;font-size:1.8rem;letter-spacing:6px;">🎀🧸💗🌸✨🥹💫</div>
+      <button class="wiggle-btn" style="margin-top:20px;" onclick="launchHearts()">Send Love Back! 💗</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with all the love in the world for Ammu Ji 🧸💗 &nbsp;|&nbsp; Always yours, forever favourite bestu 🎀
+    <br><span style="font-size:0.75rem;font-family:'Nunito',sans-serif;color:#c8a0b8;">Made with IBM Bob</span>
+  </footer>
+
+</div><!-- end #main-site -->
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+/* ======================================================
+   STAR / SPARKLE BACKGROUND
+====================================================== */
+(function(){
+  const bg = document.getElementById('starBg');
+  const items = ['✦','✧','·','*','˚','⋆','°'];
+  for(let i=0;i<55;i++){
+    const s = document.createElement('span');
+    s.textContent = items[Math.floor(Math.random()*items.length)];
+    s.style.cssText = `
+      position:absolute;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      font-size:${0.5+Math.random()*1}rem;
+      color:rgba(${200+Math.floor(Math.random()*55)},${100+Math.floor(Math.random()*80)},${180+Math.floor(Math.random()*55)},${0.2+Math.random()*0.4});
+      animation:twinkle ${2+Math.random()*3}s ease-in-out ${Math.random()*4}s infinite alternate;
+      pointer-events:none;
+    `;
+    bg.appendChild(s);
+  }
+  const style = document.createElement('style');
+  style.textContent = `@keyframes twinkle{0%{opacity:0.15;transform:scale(0.8);}100%{opacity:1;transform:scale(1.3);}}`;
+  document.head.appendChild(style);
+})();
+
+/* ======================================================
+   FLOATING HEARTS (background)
+====================================================== */
+function spawnFloatingHeart(x, y) {
+  const h = document.createElement('div');
+  h.className = 'mini-heart';
+  h.textContent = ['💗','💓','💕','💖','🌸','✨'][Math.floor(Math.random()*6)];
+  h.style.left = (x||Math.random()*100)+'%';
+  h.style.top  = (y||80+Math.random()*15)+'%';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),2500);
+}
+setInterval(()=>spawnFloatingHeart(null,null),1200);
+
+/* ======================================================
+   WELCOME SCREEN TYPEWRITER
+====================================================== */
+const msgs = ['wm0','wm1','wm2','wm3'];
+let mi = 0;
+function showNextMsg(){
+  if(mi>=msgs.length) return;
+  document.getElementById(msgs[mi]).classList.add('visible');
+  mi++;
+  if(mi<msgs.length) setTimeout(showNextMsg, 1600);
+}
+setTimeout(showNextMsg, 600);
+
+/* ======================================================
+   OPEN WORLD BUTTON
+====================================================== */
+function openWorld(){
+  // open gift box
+  document.getElementById('giftBoxHero').classList.add('opened');
+  // burst hearts
+  for(let i=0;i<18;i++){
+    const h = document.createElement('div');
+    h.className = 'burst-heart';
+    const tx = (Math.random()-0.5)*300;
+    const ty = -(80+Math.random()*180);
+    h.style.cssText = `
+      left:${35+Math.random()*30}vw;
+      top:${40+Math.random()*20}vh;
+      --tx:${tx}px;--ty:${ty}px;
+    `;
+    h.textContent = ['💗','💕','💖','✨','🌸','🎀'][Math.floor(Math.random()*6)];
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1400);
+  }
+  // after short delay, show main site
+  setTimeout(()=>{
+    document.getElementById('welcome').style.display='none';
+    const ms = document.getElementById('main-site');
+    ms.style.display='block';
+    // start confetti in surprise section
+    buildSectionConfetti();
+  },900);
+}
+
+/* ======================================================
+   ENVELOPE & LETTER
+====================================================== */
+const LETTER = `Dear Ammu Ji, my cutooo, my pookie, my favourite pagal! 🥹💗
+
+You are not just my best friend. You are one of those special people who make ordinary days feel beautiful. You make me smile, annoy me in the cutest way, and make so many memories worth keeping.
+
+No matter how much I tease you or call you pagal, you will always have a special place in my little heart.
+
+You are my Ammu Ji, my cutoo, my pookie, and my forever favourite bestu. Never forget how special you are to me. 🧸💗
+
+Love youuuuu, Ammu Jiiii! 🎀`;
+
+let letterInterval = null;
+let letterDone = false;
+
+function openEnvelope(){
+  const env = document.getElementById('envelope');
+  if(env.classList.contains('opened')) return;
+  env.classList.add('opened');
+  // release mini hearts
+  for(let i=0;i<10;i++){
+    setTimeout(()=>{
+      const r = env.getBoundingClientRect();
+      spawnFloatingHeart((r.left/window.innerWidth*100)+(Math.random()-0.5)*10, (r.top/window.innerHeight*100));
+    }, i*150);
+  }
+  setTimeout(()=>{
+    document.getElementById('letterModal').classList.add('active');
+    startLetterTypewriter();
+  },800);
+}
+
+function closeLetterModal(){
+  document.getElementById('letterModal').classList.remove('active');
+}
+
+function startLetterTypewriter(){
+  const el = document.getElementById('letterText');
+  el.innerHTML = '<span class="letter-cursor" id="letterCursor"></span>';
+  let i = 0;
+  if(letterInterval) clearInterval(letterInterval);
+  letterDone = false;
+  letterInterval = setInterval(()=>{
+    if(i>=LETTER.length){
+      clearInterval(letterInterval);
+      letterDone = true;
+      document.getElementById('letterCursor').style.display='none';
+      return;
+    }
+    const cursor = document.getElementById('letterCursor');
+    cursor.insertAdjacentText('beforebegin', LETTER[i]);
+    i++;
+  },28);
+}
+
+function replayLetter(){
+  startLetterTypewriter();
+  // floating hearts around modal
+  for(let i=0;i<8;i++){
+    setTimeout(()=>spawnFloatingHeart(30+Math.random()*40, 20+Math.random()*60),i*200);
+  }
+}
+
+/* ======================================================
+   GIFT MODALS
+====================================================== */
+function openGift(n){
+  const m = document.getElementById('modal'+n);
+  m.classList.add('active');
+  if(n===2) setTimeout(startSecretMsg,300);
+  if(n===4) setTimeout(popReasons,400);
+  if(n===6) buildConfetti('confettiContainer');
+  // burst hearts on open
+  for(let i=0;i<8;i++){
+    setTimeout(()=>spawnFloatingHeart(20+Math.random()*60,20+Math.random()*60),i*120);
+  }
+}
+function closeGift(n){
+  document.getElementById('modal'+n).classList.remove('active');
+  if(n===6){
+    document.getElementById('confettiContainer').innerHTML='';
+  }
+}
+
+/* Gift 1 – Hug Teddy */
+function hugTeddy(){
+  const svg = document.getElementById('huggySvg');
+  svg.classList.remove('hugging');
+  void svg.offsetWidth;
+  svg.classList.add('hugging');
+  const msg = document.getElementById('hugMsg');
+  msg.textContent = 'A BIG SQUISHY HUG JUST FOR YOUUU! 💗';
+  msg.style.opacity='1';
+  for(let i=0;i<12;i++) setTimeout(()=>spawnFloatingHeart(30+Math.random()*40,30+Math.random()*40),i*120);
+}
+
+/* Gift 2 – Secret Message */
+const SECRET_MSG = `Heyyy my Ammu Ji! You might be my favourite pagal, but you're also one of my favourite people ever. Thank you for being YOU. Never forget how precious our friendship is to me. 🥹💗`;
+let secretInterval = null;
+function startSecretMsg(){
+  const el = document.getElementById('secretMsgText');
+  el.innerHTML = '<span class="letter-cursor"></span>';
+  let i = 0;
+  if(secretInterval) clearInterval(secretInterval);
+  secretInterval = setInterval(()=>{
+    if(i>=SECRET_MSG.length){clearInterval(secretInterval);return;}
+    const c = el.querySelector('.letter-cursor');
+    c.insertAdjacentText('beforebegin',SECRET_MSG[i]);
+    i++;
+  },32);
+}
+function replaySecret(){ startSecretMsg(); }
+
+/* Gift 3 – Hugs */
+const hugData = {
+  bear:{icon:'🧸',msg:'BEAAAAR HUG! Squeezing you SO tight right now! 🧸💗'},
+  squishy:{icon:'💗',msg:'The squishiest cuddle coming your way, Ammu Ji! 💗🥹'},
+  endless:{icon:'🫂',msg:'This hug will never ever end. NEVER. 🫂💗 Trapped forever in a hug!'}
+};
+function doHug(type){
+  const d = hugData[type];
+  const icon = document.getElementById('hugAnimIcon');
+  const res  = document.getElementById('hugResult');
+  icon.style.animation='none';
+  icon.textContent = d.icon;
+  icon.style.animation='giftIconBounce 0.5s ease-in-out 4';
+  res.textContent = d.msg;
+  res.classList.add('show');
+  for(let i=0;i<10;i++) setTimeout(()=>spawnFloatingHeart(20+Math.random()*60,20+Math.random()*60),i*100);
+}
+
+/* Gift 4 – Reasons pop */
+function popReasons(){
+  const cards = document.querySelectorAll('.reason-card');
+  cards.forEach((c,i)=>{
+    setTimeout(()=>{
+      c.classList.add('popped');
+      spawnFloatingHeart(20+Math.random()*60,20+Math.random()*60);
+    },i*300);
+  });
+}
+
+/* Gift 5 – Cuddle Box */
+function cuddleTap(el, msg){
+  el.classList.remove('wiggle');
+  void el.offsetWidth;
+  el.classList.add('wiggle');
+  el.querySelector('.cuddle-msg').textContent = msg;
+  for(let i=0;i<5;i++) setTimeout(()=>spawnFloatingHeart(20+Math.random()*60,20+Math.random()*60),i*100);
+}
+
+/* ======================================================
+   CONFETTI
+====================================================== */
+const confColors = ['#f48fb1','#ce93d8','#9575cd','#e91e8c','#fff59d','#80cbc4','#ef9a9a','#ffe082'];
+function buildConfetti(containerId){
+  const c = document.getElementById(containerId);
+  c.innerHTML='';
+  for(let i=0;i<80;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    const size = 6+Math.random()*10;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      background:${confColors[Math.floor(Math.random()*confColors.length)]};
+      left:${Math.random()*100}%;
+      top:-20px;
+      animation:confettiFall ${2+Math.random()*3}s ${Math.random()*2}s linear infinite;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      opacity:${0.7+Math.random()*0.3};
+    `;
+    c.appendChild(p);
+  }
+}
+
+function buildSectionConfetti(){
+  buildConfetti('confettiSection');
+}
+
+/* ======================================================
+   LAUNCH HEARTS (footer button)
+====================================================== */
+function launchHearts(){
+  for(let i=0;i<30;i++){
+    setTimeout(()=>{
+      const h = document.createElement('div');
+      h.className = 'burst-heart';
+      const tx = (Math.random()-0.5)*400;
+      const ty = -(60+Math.random()*250);
+      h.style.cssText = `
+        left:${10+Math.random()*80}vw;
+        top:${40+Math.random()*40}vh;
+        font-size:${1+Math.random()*1.5}rem;
+        --tx:${tx}px;--ty:${ty}px;
+        animation-duration:1.4s;
+      `;
+      h.textContent=['💗','💓','💕','💖','🌸','✨','🧸','🎀'][Math.floor(Math.random()*8)];
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),1500);
+    },i*60);
+  }
+}
+
+/* ======================================================
+   SCROLL-BASED GIFT ICON BOUNCE RESET
+====================================================== */
+document.querySelectorAll('.gift-icon').forEach(el=>{
+  el.style.animationDelay = (Math.random()*2)+'s';
+});
+</script>
+</body>
+</html>
